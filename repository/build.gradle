@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
@@ -36,5 +37,9 @@ dependencies {
 
     //Enabling multidex suport avoid 64K method limit (see attached: https://developer.android.com/studio/build/multidex.html)
     implementation 'com.android.support:multidex:1.0.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+}
+repositories {
+    mavenCentral()
 }
