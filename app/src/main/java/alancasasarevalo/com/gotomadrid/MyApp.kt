@@ -1,8 +1,8 @@
 package alancasasarevalo.com.gotomadrid
 
 import alancasasarevalo.com.domain.ErrorCompletion
-import alancasasarevalo.com.domain.GetAllActivitiesToDoInteractorFakeImplementation
 import alancasasarevalo.com.domain.SuccessCompletion
+import alancasasarevalo.com.domain.interactors.getallelements.GetAllActivitiesToDoInteractorFakeImplementation
 import alancasasarevalo.com.domain.model.ActivitiesToDo
 import android.support.multidex.MultiDexApplication
 import android.util.Log

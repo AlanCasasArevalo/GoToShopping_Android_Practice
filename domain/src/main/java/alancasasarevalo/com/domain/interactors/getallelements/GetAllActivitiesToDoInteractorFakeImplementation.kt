@@ -1,6 +1,8 @@
-package alancasasarevalo.com.domain
+package alancasasarevalo.com.domain.interactors.getallelements
 
 import alancasasarevalo.com.activitytype.ActivityType
+import alancasasarevalo.com.domain.ErrorCompletion
+import alancasasarevalo.com.domain.SuccessCompletion
 import alancasasarevalo.com.domain.model.ActivitiesToDo
 import alancasasarevalo.com.domain.model.ActivityToDo
 
