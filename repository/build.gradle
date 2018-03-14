@@ -29,14 +29,23 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    //Enabling multidex suport avoid 64K method limit (see attached: https://developer.android.com/studio/build/multidex.html)
-    implementation 'com.android.support:multidex:1.0.0'
+    implementation "com.android.support:appcompat-v7:$appcompat_version"
+    testImplementation "junit:junit:$junit_junit"
+    androidTestImplementation "com.android.support.test:runner:$tests_runer"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_core"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(':activitytype')
+    implementation project(':utils')
+
+    //////*** EXTERNAL LIBRARIES ***//////
+    //Enabling multidex suport avoid 64K method limit (see attached: https://developer.android.com/studio/build/multidex.html)
+    implementation "com.android.support:multidex:$multidex_support"
+
+    //This library is use to transmitting network data (see attached url : https://developer.android.com/training/volley/index.html)
+    implementation 'com.android.volley:volley:1.1.0'
+
+    //This librari is use to parse JSON with Jackson (see attached url : https://github.com/FasterXML/jackson-core)
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.1'
+
 }
 repositories {
     mavenCentral()

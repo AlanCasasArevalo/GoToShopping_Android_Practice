@@ -1,1 +1,1 @@
-include ':app', ':domain', ':repository', ':activitytype'
+include ':app', ':domain', ':repository', ':utils'

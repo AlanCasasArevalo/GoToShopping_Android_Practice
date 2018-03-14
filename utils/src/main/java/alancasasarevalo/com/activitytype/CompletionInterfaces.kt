@@ -1,4 +1,4 @@
-package alancasasarevalo.com.domain
+package alancasasarevalo.com.activitytype
 
 
 interface SuccessCompletion <in T>{
