@@ -1,10 +1,11 @@
-package alancasasarevalo.com.repository.database
+package alancasasarevalo.com.repository
 
+import alancasasarevalo.com.repository.database.dao.DBConstants
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-internal fun buildDBHelper(context: Context, name: String, version: Int ) : DBHelper{
+internal fun buildDBHelper(context: Context, name: String, version: Int ) : DBHelper {
     return DBHelper(context, name, null, version)
 }
 

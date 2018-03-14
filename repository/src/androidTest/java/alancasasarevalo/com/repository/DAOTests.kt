@@ -1,10 +1,8 @@
 package alancasasarevalo.com.repository
 
 import alancasasarevalo.com.activitytype.ActivityType
-import alancasasarevalo.com.repository.database.EntityDAO
-import alancasasarevalo.com.repository.database.EntityModel
-import alancasasarevalo.com.repository.database.buildDBHelper
-import alancasasarevalo.com.repository.database.convertBooleanToInt
+import alancasasarevalo.com.repository.database.dao.EntityDAO
+import alancasasarevalo.com.repository.model.EntityModel
 import android.support.test.InstrumentationRegistry
 import android.util.Log
 import junit.framework.Assert

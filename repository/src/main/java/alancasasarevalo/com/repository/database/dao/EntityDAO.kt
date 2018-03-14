@@ -1,6 +1,9 @@
-package alancasasarevalo.com.repository.database
+package alancasasarevalo.com.repository.database.dao
 
 import alancasasarevalo.com.activitytype.ActivityType
+import alancasasarevalo.com.repository.DBHelper
+import alancasasarevalo.com.repository.database.DAOPersistable
+import alancasasarevalo.com.repository.model.EntityModel
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase

@@ -1,4 +1,4 @@
-package alancasasarevalo.com.repository.database
+package alancasasarevalo.com.repository.database.dao
 
 internal object DBConstants {
     val TABLE_ENTITY = "TABLE_ENTITY"
