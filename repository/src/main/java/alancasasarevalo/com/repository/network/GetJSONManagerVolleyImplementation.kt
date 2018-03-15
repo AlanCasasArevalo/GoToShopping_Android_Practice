@@ -10,25 +10,27 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import java.lang.ref.WeakReference
 
-class GetJSONManagerVolleyImplementation (context: Context) : GetJSONManagerInterface {
+class GetJSONManagerVolleyImplementation(context: Context) : GetJSONManagerInterface {
 
     var weakContext: WeakReference<Context> = WeakReference(context)
-    var requestQueue : RequestQueue? = null
+    var requestQueue: RequestQueue? = null
 
     override fun execute(url: String, successCompletion: SuccessCompletion<String>, errorCompletion: ErrorCompletion) {
 
-        val request = StringRequest(url, Response.Listener {
-            Log.d("VOLLEY response", it)
-            successCompletion.successCompletion(it)
-        }, Response.ErrorListener {
-            it.localizedMessage
-        })
+        val request = StringRequest(url,
+                Response.Listener {
+                    Log.d("VOLLEY response", it)
+                    successCompletion.successCompletion(it)
+                },
+                Response.ErrorListener {
+                    it.localizedMessage
+                })
 
         requestQueue().add(request)
     }
 
-    fun requestQueue() : RequestQueue {
-        if (requestQueue != null){
+    fun requestQueue(): RequestQueue {
+        if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(weakContext.get())
         }
         return requestQueue!!
