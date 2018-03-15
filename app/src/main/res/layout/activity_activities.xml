@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="alancasasarevalo.com.gotomadrid.activity.ActivitiesActivity"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="35dp"
+        android:text="Hola desde Activities Activity"
+        android:gravity="center"
+        android:layout_weight="1"
+        />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/activities_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_weight="0"
+        android:foregroundGravity="center"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/colorAccent"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/navigation_bar_menu">
+
+    </android.support.design.widget.BottomNavigationView>
+
+</LinearLayout>
