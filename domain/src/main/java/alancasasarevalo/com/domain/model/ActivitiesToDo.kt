@@ -1,6 +1,8 @@
 package alancasasarevalo.com.domain.model
 
-class ActivitiesToDo (var activities: MutableList<ActivityToDo>) : Aggregate<ActivityToDo> {
+import java.io.Serializable
+
+class ActivitiesToDo (var activities: MutableList<ActivityToDo>) : Aggregate<ActivityToDo>, Serializable {
 
     override fun elementCount(): Int {
         return activities.size

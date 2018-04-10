@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="alancasasarevalo.com.gotomadrid">
 
-
     <permission
         android:name="alancasasarevalo.com.gotomadrid.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -31,7 +30,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -40,13 +38,12 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".activity.PresentationActivity" />
-        <activity android:name=".dummyui.activity.DummyActivity"></activity>
         <activity android:name=".activity.DetailActivity"></activity>
         <activity android:name=".activity.ShopsActivity">
         </activity>
-        <activity android:name=".activity.ActivitiesActivity"></activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.ActivitiesActivity" />
+        <activity android:name=".activity.MapAndListActivity"></activity>
+        <activity android:name=".activity.PresentationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

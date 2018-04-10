@@ -21,8 +21,6 @@ class DataBindingRecyclerAdapter <Model>(val itemVariableId: Int, val itemLayout
                                                                 parent,
                                                                 false)
 
-
-
         return DataBindingViewHolder(itemVariableId, binding)
     }
 

@@ -7,31 +7,47 @@ import alancasasarevalo.com.domain.interactors.getallelements.GetAllActivitiesTo
 import alancasasarevalo.com.domain.interactors.getallelements.GetAllElementsInteractorImplementation
 import alancasasarevalo.com.domain.model.ActivitiesToDo
 import alancasasarevalo.com.gotomadrid.R
+import alancasasarevalo.com.gotomadrid.fragment.ActivitiesToDoListFragment
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ListFragment
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
-class MainActivity : AppCompatActivity() {
-
-    var listFragment: ListFragment? = null
-
+class MapAndListActivity : AppCompatActivity() {
     private var map: GoogleMap? = null
+    lateinit var activityType: ActivityType
+    val allActivitiesToDo : GetAllActivitiesToDoInteractor = GetAllElementsInteractorImplementation(this)
+
+    companion object {
+        private val EXTRA_ACTIVITY_TYPE = "EXTRA_ACTIVITY_TYPE"
+
+        fun intent (context: Context, activityType: ActivityType?) : Intent {
+            val intent = Intent(context, MapAndListActivity::class.java)
+            intent.putExtra(EXTRA_ACTIVITY_TYPE, activityType)
+            return intent
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_map_and_list)
 
-        setupMap()
+        activityType = intent.getSerializableExtra(EXTRA_ACTIVITY_TYPE) as ActivityType
+
+        if (activityType != null){
+            setupMap(activityType)
+        }
 
     }
 
@@ -68,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until activitiesToDo.elementCount()){
             val activityToDo = activitiesToDo.getElementByPosition(i)
 
-            this.addPin(map!!, activityToDo.latitude.toDouble(), activityToDo.longitude.toDouble(), activityToDo.name)
+            addPin(map!!, activityToDo.latitude.toDouble(), activityToDo.longitude.toDouble(), activityToDo.name)
         }
 
     }
@@ -87,21 +103,17 @@ class MainActivity : AppCompatActivity() {
             // TODO: Alerta para que muestre al usuario alerta para que nos de permisios y rellamar a la funcion si no quiere el usuario return
 
             return
+        } else {
+            map.isMyLocationEnabled = true
         }
     }
 
-    private fun setupMap(){
+    private fun setupMap(activityType: ActivityType){
 
-
-        val allActivitiesToDo : GetAllActivitiesToDoInteractor = GetAllElementsInteractorImplementation(this)
-
-        allActivitiesToDo.executeForType(ActivityType.ACTIVITY, successCompletion = object : SuccessCompletion<ActivitiesToDo> {
+        allActivitiesToDo.executeForType(activityType, successCompletion = object : SuccessCompletion<ActivitiesToDo> {
             override fun successCompletion(element: ActivitiesToDo) {
-                element.activities.forEach {
-                    Log.d("MyApp", "${it.name} y hemos devuelto  ${element.activities.size} elementos")
-                    // TODO:Pasar por parametro una tienda o actividad
+                    initializeList(element)
                     initializeMap(element)
-                }
             }
 
         }, error = object : ErrorCompletion {
@@ -123,5 +135,41 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun initializeList(elements: ActivitiesToDo){
+
+        if (supportFragmentManager.findFragmentById(R.id.activity_list_fragment) == null ){
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.activity_list_fragment, ActivitiesToDoListFragment.newInstance(elements))
+                    .commit()
+        }
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

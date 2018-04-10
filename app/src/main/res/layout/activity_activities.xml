@@ -8,28 +8,20 @@
     android:orientation="vertical"
     >
 
-
-    <TextView
+    <fragment
+        android:id="@+id/activity_main_map_fragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="35dp"
-        android:text="Hola desde Activities Activity"
-        android:gravity="center"
         android:layout_weight="1"
         />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/activities_navigation_view"
+    <FrameLayout
+        android:id="@+id/activity_list_fragment"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_weight="0"
-        android:foregroundGravity="center"
-        app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@color/colorAccent"
-        app:itemTextColor="@android:color/white"
-        app:menu="@menu/navigation_bar_menu">
-
-    </android.support.design.widget.BottomNavigationView>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+    </FrameLayout>
 
 </LinearLayout>

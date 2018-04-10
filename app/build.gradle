@@ -58,5 +58,8 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     //This dependency able google maps (see attached: https://developers.google.com/android/guides/setup)
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    //This dependency able Glide (see attached url:https://github.com/bumptech/glide)
+    implementation "com.github.bumptech.glide:glide:$glide"
+
 
 }

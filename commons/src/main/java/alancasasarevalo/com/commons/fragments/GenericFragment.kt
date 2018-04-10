@@ -10,7 +10,6 @@ import android.view.ViewGroup
 abstract class GenericFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        val rootView = container?.inflate(getLayoutResId(), attachToRoot = true)
         val rootView = container?.inflate(getLayoutResId())
 
         return rootView

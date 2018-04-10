@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="alancasasarevalo.com.gotomadrid.activity.PresentationActivity">
-
+    tools:context="alancasasarevalo.com.gotomadrid.activity.PresentationActivity"
+    android:orientation="vertical"
+    >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="35dp"
-        android:text="Hola desde Presentation Activity"
+        android:textSize="20dp"
+        android:text="Pulsa las imagenes"
+        android:layout_weight="1"
+        android:layout_gravity="center"
         android:gravity="center"
         />
 
+    <ImageButton
+        android:id="@+id/presentation_shop_download_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/shopping"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        />
+
+    <ImageButton
+        android:id="@+id/presentation_activity_download_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/activities"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        />
 
 
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

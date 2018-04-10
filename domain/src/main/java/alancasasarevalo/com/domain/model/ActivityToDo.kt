@@ -1,5 +1,7 @@
 package alancasasarevalo.com.domain.model
 
+import java.io.Serializable
+
 data class ActivityToDo(val id: Long,
                            val name: String,
 
@@ -25,7 +27,7 @@ data class ActivityToDo(val id: Long,
                            val openingHoursCn: String,
 
                            val type: String
-)
+): Serializable
 
 
 
