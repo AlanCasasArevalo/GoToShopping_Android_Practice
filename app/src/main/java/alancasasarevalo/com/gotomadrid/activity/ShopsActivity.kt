@@ -6,6 +6,7 @@ import alancasasarevalo.com.activitytype.SuccessCompletion
 import alancasasarevalo.com.domain.interactors.getallelements.GetAllActivitiesToDoInteractor
 import alancasasarevalo.com.domain.interactors.getallelements.GetAllElementsInteractorImplementation
 import alancasasarevalo.com.domain.model.ActivitiesToDo
+import alancasasarevalo.com.domain.model.ActivityToDo
 import alancasasarevalo.com.gotomadrid.R
 import alancasasarevalo.com.gotomadrid.fragment.ActivitiesToDoListFragment
 import android.Manifest
@@ -28,6 +29,7 @@ class ShopsActivity : AppCompatActivity() {
     private var map: GoogleMap? = null
     lateinit var activityType: ActivityType
     val allActivitiesToDo : GetAllActivitiesToDoInteractor = GetAllElementsInteractorImplementation(this)
+    val hashMarkerMap: HashMap<String, String>? = null
 
     companion object {
         private val EXTRA_ACTIVITY_TYPE = "EXTRA_ACTIVITY_TYPE"
@@ -65,6 +67,17 @@ class ShopsActivity : AppCompatActivity() {
             showUserPosition(baseContext, it)
             addAllPins(element)
 
+            map?.setOnMarkerClickListener {marker ->
+
+                element.activities.forEach {activityToDoInArray ->
+                    if ( marker.title == activityToDoInArray.name ){
+                        val intent = DetailActivity.intent(this, activityToDoInArray)
+                        startActivity(intent)
+                    }
+                }
+
+                return@setOnMarkerClickListener false
+            }
         })
     }
 
@@ -75,17 +88,26 @@ class ShopsActivity : AppCompatActivity() {
     }
 
     // TODO: dependiendo del tipo agregar el pin a actividades o shops
-    fun addPin(map: GoogleMap, latitude: Double, longitude: Double, title: String){
+    fun addPin(map: GoogleMap, latitude: Double, longitude: Double, activityToDo: ActivityToDo){
+
         var coordinate = LatLng(latitude, longitude)
-        map.addMarker(MarkerOptions().position(coordinate).title(title))
+
+        val marker = MarkerOptions().position(coordinate).title(activityToDo.name)
+
+        map.addMarker(marker)
+
+        hashMarkerMap?.put(marker.title, activityToDo.name)
+
+
     }
 
-    fun addAllPins( activitiesToDo: ActivitiesToDo){
+    fun addAllPins( activitiesToDo: ActivitiesToDo) {
 
         for (i in 0 until activitiesToDo.elementCount()){
             val activityToDo = activitiesToDo.getElementByPosition(i)
 
-            addPin(map!!, activityToDo.latitude.toDouble(), activityToDo.longitude.toDouble(), activityToDo.name)
+            addPin(map!!, activityToDo.latitude.toDouble(), activityToDo.longitude.toDouble(), activityToDo)
+
         }
 
     }

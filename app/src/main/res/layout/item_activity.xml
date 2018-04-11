@@ -10,6 +10,10 @@
         <variable
             name="activityToDo"
             type="alancasasarevalo.com.domain.model.ActivityToDo" />
+        <variable
+            name="handler"
+            type="alancasasarevalo.com.gotomadrid.fragment.ActivitiesToDoListFragment.Handler"/>
+
     </data>
 
     <android.support.v7.widget.CardView
@@ -137,6 +141,7 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@android:drawable/ic_dialog_info"
+                android:onClick="@{(view) -> handler.onClick(view, activityToDo)}"
                 />
 
         </android.support.constraint.ConstraintLayout>

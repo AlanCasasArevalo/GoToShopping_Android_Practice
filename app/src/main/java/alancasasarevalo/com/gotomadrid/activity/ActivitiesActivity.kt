@@ -6,6 +6,7 @@ import alancasasarevalo.com.activitytype.SuccessCompletion
 import alancasasarevalo.com.domain.interactors.getallelements.GetAllActivitiesToDoInteractor
 import alancasasarevalo.com.domain.interactors.getallelements.GetAllElementsInteractorImplementation
 import alancasasarevalo.com.domain.model.ActivitiesToDo
+import alancasasarevalo.com.domain.model.ActivityToDo
 import alancasasarevalo.com.gotomadrid.R
 import alancasasarevalo.com.gotomadrid.fragment.ActivitiesToDoListFragment
 import android.Manifest
@@ -28,6 +29,7 @@ class ActivitiesActivity : AppCompatActivity() {
     private var map: GoogleMap? = null
     lateinit var activityType: ActivityType
     val allActivitiesToDo : GetAllActivitiesToDoInteractor = GetAllElementsInteractorImplementation(this)
+    val hashMarkerMap: HashMap<String, String>? = null
 
     companion object {
         private val EXTRA_ACTIVITY_TYPE = "EXTRA_ACTIVITY_TYPE"
@@ -39,6 +41,7 @@ class ActivitiesActivity : AppCompatActivity() {
         }
 
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_activities)
@@ -64,6 +67,19 @@ class ActivitiesActivity : AppCompatActivity() {
             showUserPosition(baseContext, it)
             addAllPins(element)
 
+            map?.setOnMarkerClickListener {marker ->
+
+                element.activities.forEach {activityToDoInArray ->
+                    if ( marker.title == activityToDoInArray.name ){
+                        val intent = DetailActivity.intent(this, activityToDoInArray)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+                        startActivity(intent)
+                    }
+                }
+
+                return@setOnMarkerClickListener false
+            }
+
         })
     }
 
@@ -74,9 +90,15 @@ class ActivitiesActivity : AppCompatActivity() {
     }
 
     // TODO: dependiendo del tipo agregar el pin a actividades o shops
-    fun addPin(map: GoogleMap, latitude: Double, longitude: Double, title: String){
+    fun addPin(map: GoogleMap, latitude: Double, longitude: Double, activityToDo: ActivityToDo){
         var coordinate = LatLng(latitude, longitude)
-        map.addMarker(MarkerOptions().position(coordinate).title(title))
+
+        val marker = MarkerOptions().position(coordinate).title(activityToDo.name)
+
+        map.addMarker(marker)
+
+        hashMarkerMap?.put(marker.title, activityToDo.name)
+
     }
 
     fun addAllPins( activitiesToDo: ActivitiesToDo){
@@ -84,7 +106,8 @@ class ActivitiesActivity : AppCompatActivity() {
         for (i in 0 until activitiesToDo.elementCount()){
             val activityToDo = activitiesToDo.getElementByPosition(i)
 
-            addPin(map!!, activityToDo.latitude.toDouble(), activityToDo.longitude.toDouble(), activityToDo.name)
+            addPin(map!!, activityToDo.latitude.toDouble(), activityToDo.longitude.toDouble(), activityToDo)
+
         }
 
     }

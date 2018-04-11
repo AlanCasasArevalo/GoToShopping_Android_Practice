@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapAndListActivity : AppCompatActivity() {
+
     private var map: GoogleMap? = null
     lateinit var activityType: ActivityType
     val allActivitiesToDo : GetAllActivitiesToDoInteractor = GetAllElementsInteractorImplementation(this)
@@ -63,6 +64,7 @@ class MapAndListActivity : AppCompatActivity() {
             centerPositionOnMap(it, 40.416775, -3.703790)
             showUserPosition(baseContext, it)
             addAllPins(element)
+            Toast.makeText(this, "Vamos MapActicity" , Toast.LENGTH_LONG).show()
 
         })
     }

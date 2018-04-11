@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
-    var detailActivityToDo: ActivityToDo? = null
+    public var detailActivityToDo: ActivityToDo? = null
 
     companion object {
         const val DETAIL_ACTIVITY = "DETAIL_ACTIVITY"
@@ -22,6 +22,7 @@ class DetailActivity : AppCompatActivity() {
         fun intent(context: Context, activityToDo: ActivityToDo): Intent {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(DetailActivity.DETAIL_ACTIVITY, activityToDo)
+            intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
             return intent
         }
     }

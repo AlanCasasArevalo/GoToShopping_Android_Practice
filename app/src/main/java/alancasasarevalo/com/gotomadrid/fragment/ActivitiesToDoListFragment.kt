@@ -10,6 +10,7 @@ import alancasasarevalo.com.gotomadrid.R
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.Toast
 
 class ActivitiesToDoListFragment : BaseListFragment() {
 
@@ -28,7 +29,13 @@ class ActivitiesToDoListFragment : BaseListFragment() {
     }
 
     override fun getAdapter(): RecyclerView.Adapter<*> {
-        val adapter = DataBindingRecyclerAdapter<ActivityToDo>(BR.activityToDo, R.layout.item_activity)
+        val adapter = DataBindingRecyclerAdapter<ActivityToDo>(
+                itemVariableId = BR.activityToDo,
+                itemLayoutResId = R.layout.item_activity,
+                handler = Handler(),
+                handlerId = BR.handler
+        )
+
         return adapter
     }
 
@@ -38,6 +45,7 @@ class ActivitiesToDoListFragment : BaseListFragment() {
         arrayActivitiesToDo = arguments.getSerializable(EXTRA_ACTIVITYTODO) as ActivitiesToDo
 
         (listAdapter as DataBindingRecyclerAdapter<ActivityToDo>).items.addAll(getActivities())
+
         listAdapter.notifyDataSetChanged()
 
     }
@@ -85,4 +93,9 @@ class ActivitiesToDoListFragment : BaseListFragment() {
 
     }
 
+    class Handler {
+        fun onClick(view: View, item: ActivityToDo){
+            Toast.makeText(view.context, "${item.name}", Toast.LENGTH_SHORT).show()
+        }
+    }
 }

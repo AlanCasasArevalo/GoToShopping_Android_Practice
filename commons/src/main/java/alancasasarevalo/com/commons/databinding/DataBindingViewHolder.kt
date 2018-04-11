@@ -9,4 +9,9 @@ class DataBindingViewHolder <Model> ( val itemVariableId: Int, val binding: View
         binding.setVariable(itemVariableId, item)
         binding.executePendingBindings()
     }
+
+    fun bindVariable(variableId: Int, variable: Any) {
+        binding.setVariable(variableId, variable)
+        binding.executePendingBindings()
+    }
 }
