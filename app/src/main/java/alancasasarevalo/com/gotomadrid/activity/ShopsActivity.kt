@@ -54,7 +54,6 @@ class ShopsActivity : AppCompatActivity() {
 
     }
 
-    // TODO:Pasar por parametro una tienda o actividad
     private fun initializeMap(element: ActivitiesToDo) {
         val mapFragement = supportFragmentManager.findFragmentById(R.id.activity_main_map_fragment) as SupportMapFragment
         mapFragement.getMapAsync({
@@ -73,6 +72,7 @@ class ShopsActivity : AppCompatActivity() {
                     if ( marker.title == activityToDoInArray.name ){
                         val intent = DetailActivity.intent(this, activityToDoInArray)
                         startActivity(intent)
+                        return@forEach
                     }
                 }
 
@@ -87,17 +87,12 @@ class ShopsActivity : AppCompatActivity() {
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
-    // TODO: dependiendo del tipo agregar el pin a actividades o shops
     fun addPin(map: GoogleMap, latitude: Double, longitude: Double, activityToDo: ActivityToDo){
 
         var coordinate = LatLng(latitude, longitude)
-
         val marker = MarkerOptions().position(coordinate).title(activityToDo.name)
-
         map.addMarker(marker)
-
         hashMarkerMap?.put(marker.title, activityToDo.name)
-
 
     }
 
@@ -141,7 +136,6 @@ class ShopsActivity : AppCompatActivity() {
 
         }, error = object : ErrorCompletion {
             override fun errorCompletion(errorMessage: String) {
-                // TODO:Devolver fallo al cliente en cristiano
                 Toast.makeText(baseContext, errorMessage, Toast.LENGTH_LONG).show()
             }
         })
@@ -153,7 +147,6 @@ class ShopsActivity : AppCompatActivity() {
             try{
                 map?.isMyLocationEnabled = true
             } catch (errorMessage: SecurityException){
-                // TODO:Hacer un mensaje para el user
                 Toast.makeText(baseContext, errorMessage.localizedMessage, Toast.LENGTH_LONG).show()
             }
         }

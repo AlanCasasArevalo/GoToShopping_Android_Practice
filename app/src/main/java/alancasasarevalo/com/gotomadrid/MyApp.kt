@@ -8,6 +8,7 @@ import alancasasarevalo.com.domain.interactors.getallelements.GetAllElementsInte
 import alancasasarevalo.com.domain.model.ActivitiesToDo
 import android.support.multidex.MultiDexApplication
 import android.util.Log
+import android.widget.Toast
 
 class MyApp : MultiDexApplication(){
 
@@ -21,7 +22,6 @@ class MyApp : MultiDexApplication(){
 //            }
 //        }, object : ErrorCompletion {
 //            override fun errorCompletion(errorMessage: String) {
-//                // TODO: Do something with errors
 //            }
 //
 //        })
@@ -45,7 +45,7 @@ class MyApp : MultiDexApplication(){
 
         }, error = object : ErrorCompletion {
             override fun errorCompletion(errorMessage: String) {
-                // TODO:Devolver fallo al cliente en cristiano
+                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_LONG).show()
             }
         })
 

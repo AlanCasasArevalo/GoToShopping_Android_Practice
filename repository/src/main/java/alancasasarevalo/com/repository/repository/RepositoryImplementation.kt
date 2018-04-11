@@ -11,6 +11,7 @@ import alancasasarevalo.com.repository.network.GetJSONManagerInterface
 import alancasasarevalo.com.repository.network.GetJSONManagerVolleyImplementation
 import alancasasarevalo.com.repository.network.json.JsonEntitiesParser
 import android.content.Context
+import android.widget.Toast
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
 import java.lang.ref.WeakReference
 
@@ -88,7 +89,7 @@ class RepositoryImplementation(context: Context) : RepositoryInterface {
             }
         }, errorCompletion = object : ErrorCompletion {
             override fun errorCompletion(errorMessage: String) {
-                // TODO: Dar Feedback al usuario
+                Toast.makeText(weakContext.get(), errorMessage, Toast.LENGTH_LONG).show()
             }
         })
 

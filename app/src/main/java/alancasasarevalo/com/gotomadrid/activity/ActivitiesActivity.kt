@@ -54,7 +54,6 @@ class ActivitiesActivity : AppCompatActivity() {
 
     }
 
-    // TODO:Pasar por parametro una tienda o actividad
     private fun initializeMap(element: ActivitiesToDo) {
         val mapFragement = supportFragmentManager.findFragmentById(R.id.activity_main_map_fragment) as SupportMapFragment
         mapFragement.getMapAsync({

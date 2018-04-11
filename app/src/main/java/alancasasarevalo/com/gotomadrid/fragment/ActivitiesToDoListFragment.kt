@@ -7,10 +7,12 @@ import alancasasarevalo.com.domain.model.ActivitiesToDo
 import alancasasarevalo.com.domain.model.ActivityToDo
 import alancasasarevalo.com.gotomadrid.BR
 import alancasasarevalo.com.gotomadrid.R
+import alancasasarevalo.com.gotomadrid.activity.DetailActivity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Toast
 
 class ActivitiesToDoListFragment : BaseListFragment() {
 
@@ -95,7 +97,32 @@ class ActivitiesToDoListFragment : BaseListFragment() {
 
     class Handler {
         fun onClick(view: View, item: ActivityToDo){
-            Toast.makeText(view.context, "${item.name}", Toast.LENGTH_SHORT).show()
+            val intent = DetailActivity.intent(view.context, item)
+            intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+            startActivity(view.context, intent, null)
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

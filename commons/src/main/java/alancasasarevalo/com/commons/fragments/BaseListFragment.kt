@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_list.view.*
 
-abstract class BaseListFragment : GenericFragment(){
+abstract class BaseListFragment : GenericFragment() {
 
     lateinit var listAdapter: RecyclerView.Adapter<*>
 
@@ -23,7 +23,8 @@ abstract class BaseListFragment : GenericFragment(){
         view?.base_list_fragment?.let {
             with(view.base_list_fragment){
                 adapter = listAdapter
-                layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
+                layoutManager = LinearLayoutManager(context)
+
             }
         }
 

@@ -42,7 +42,6 @@
         <activity android:name=".activity.ShopsActivity">
         </activity>
         <activity android:name=".activity.ActivitiesActivity" />
-        <activity android:name=".activity.MapAndListActivity"></activity>
         <activity android:name=".activity.PresentationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
